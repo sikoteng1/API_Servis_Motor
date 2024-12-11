@@ -16,8 +16,8 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: 103.76.129.70
-          username: FPservis@sikoteng.my.id
-          password: @SikotengFTP123
+          username: fpservis@sikoteng.my.id
+          password: 123456789
           exclude: |
             */.git
             */.git/**
