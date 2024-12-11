@@ -1,0 +1,7 @@
+{
+    "editor.fontSize": 16,
+    "workbench.colorTheme": "Monoka",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.wordWrap": "on",
+    "liveServer.settings.port": 5501
+}

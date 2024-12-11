@@ -1,0 +1,69 @@
+* {
+    font-family: "parkinsans";
+}
+
+.images {
+    display: flex;
+    transition: margin 2s;
+}
+
+.images img {
+    width: 100%;
+    object-fit: cover; /* Menambahkan ini untuk memastikan gambar menutupi kontainer tanpa mengubah rasio */
+}
+
+.wrapper {
+    width: 100%; /* Ubah ini untuk memastikan wrapper memenuhi lebar kontainer */
+    max-width: 1280px; /* Tetap ada batas lebar maksimal */
+    margin: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+#slide-1:target ~ .images {
+    margin-left: 0;
+}
+
+#slide-2:target ~ .images {
+    margin-left: -100%;
+}
+
+#slide-3:target ~ .images {
+    margin-left: -200%;
+}
+
+#slide-4:target ~ .images {
+    margin-left: -300%;
+}
+
+.navigation {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: -55px;
+}
+
+.navigation a {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: #dedede;
+    font-size: 0;
+    border-radius: 50px;
+    margin: 3px;
+    transition: background-color 0.5s;
+}
+
+.navigation a:hover {
+    background-color: #666;
+}
+
+@media screen and (max-width: 800px) {
+    .wrapper {
+        width: 100%;
+    }
+}
