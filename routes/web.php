@@ -51,7 +51,7 @@ Route::post('/checkout/store', [App\Http\Controllers\UserJasaController::class, 
 
 // Route::put('/jasa/update/{id}', [AdminjasaController::class, 'update'])->name('jasa.update');
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/come', [VisitorController::class, 'index'])->name('home');  //Login = /Nome
+    Route::get('/home', [VisitorController::class, 'index'])->name('home');  //Login = /Nome
     Route::get('/update-jasa/{id}', [AdminjasaController::class, 'update'])->name('update-jasa');
     Route::delete('/jasa/delete/{id}', [AdminJasaController::class, 'delete'])->name('delete-jasa');
     Route::post('/tambah-jasa', [AdminJasaController::class, 'store']);
