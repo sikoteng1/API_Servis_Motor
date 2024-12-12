@@ -4,9 +4,9 @@
 
  <div class="container con-admin">
 
-    <form action="cetak-jasa"  style="text-align: right; ">
+    <form action="cetak-pemesanan"  style="text-align: right; ">
 
-        <a href="/cetak-jasa" type="button" target="_blank" style="background: lightgreen; border: #000"
+        <a href="/cetak-pemesanan" type="button" target="_blank" style="background: lightgreen; border: #000"
             ><i class="fa-solid fa-print m-2" style="color: #000000;"></i></a>
     </form>
 <section>

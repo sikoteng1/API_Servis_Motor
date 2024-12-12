@@ -212,7 +212,7 @@
             <i class="bi bi-star-fill text-warning"></i>
           </div>
         </div>
-
+{{--
         <div class="swiper-slide p-4" style="background-color:ghostwhite;">
           <div class="profile d-flex align-items-center p-4">
             <img src="{{ asset('servis/img/person-circle.svg')}}" width="30px">
@@ -244,7 +244,7 @@
             <i class="bi bi-star-fill text-warning"></i>
             <i class="bi bi-star-fill text-warning"></i>
           </div>
-        </div>
+        </div> --}}
 
       </div>
       <div class="swiper-pagination"></div>
@@ -274,7 +274,7 @@
                         </div>
                         <br>
                         <div class="contact-item">
-                            <a href="#" class="fa fa-linkedin" target="_blank" style="background: #3B5998; color: white;"></a>
+                            <a href="https://www.linkedin.com/in/naufal-alif-656442237/" class="fa fa-linkedin" target="_blank" style="background: #3B5998; color: white;"></a>
                             <span class="contact-text">LinkedIn</span>
                         </div>
                         <br>
@@ -283,10 +283,6 @@
                             <span class="contact-text">Instagram</span>
                         </div>
                         <br>
-                        <div class="contact-item">
-                            <a href="#" class="fa fa-google" target="_blank" style="background: #dd4b39; color: white;"></a>
-                            <span class="contact-text">Google</span>
-                        </div>
                     </div>
                 </div>
             </div>

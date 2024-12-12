@@ -6,12 +6,13 @@ use App\Models\Checkout;
 use App\Models\jasa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class AdminJasaController extends Controller
 {
     public function index()
     {
-        $jasa = Jasa::take(3)->get();
+        $jasa = Jasa::all();
         return view('admin.daftar-jasa', compact('jasa'));
     }
 
@@ -25,6 +26,12 @@ class AdminJasaController extends Controller
     {
         $jasa = Jasa::all();
         return view('admin.cetak-jasa',compact('jasa'));
+    }
+
+    public function cetakPemesanan()
+    {
+        $checkout = Checkout::all();
+        return view('admin.cetak-pemesanan',compact('checkout'));
     }
 
     public function store(Request $request)
@@ -58,5 +65,18 @@ class AdminJasaController extends Controller
     {
         $jasa = Jasa::findOrFail($id);
         return view('admin.update-jasa', compact('jasa'));
+    }
+
+
+
+    public function showChart() {
+        // Ambil data, group by tanggal, dan hitung jumlah pesanan per tanggal
+        $orders = DB::table('pesanan')
+                    ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as total_orders'))
+                    ->groupBy('date')
+                    ->orderBy('date', 'asc')
+                    ->get();
+
+        return view('admin.home', ['orders' => $orders]);
     }
 }

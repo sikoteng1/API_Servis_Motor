@@ -19,6 +19,6 @@ jobs:
           username: fpservis@sikoteng.my.id
           password: 123456789
           exclude: |
-            */.git
-            */.git/**
-            */node_modules/*
+            **/.git*
+            **/.git/**
+            **/node_modules/**

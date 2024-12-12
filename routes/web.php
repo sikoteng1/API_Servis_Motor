@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AdminJasaController;
 use App\Http\Controllers\UserJasaController;
+use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,9 +15,9 @@ Route::get('/gallery', function () {
     return view('includes.gallery-user');
 });
 
-Route::get('/new_login', function () {
-    return view('auth.new_login1');
-})->name('login');
+// Route::get('/new_login', function () {
+//     return view('auth.new_login1');
+// })->name('login');
 
 // Route::get('/register', function () {
 //     return view('auth.register')
@@ -50,12 +51,13 @@ Route::post('/checkout/store', [App\Http\Controllers\UserJasaController::class, 
 
 // Route::put('/jasa/update/{id}', [AdminjasaController::class, 'update'])->name('jasa.update');
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [VisitorController::class, 'index'])->name('home');  //Login = /Nome
     Route::get('/update-jasa/{id}', [AdminjasaController::class, 'update'])->name('update-jasa');
     Route::delete('/jasa/delete/{id}', [AdminJasaController::class, 'delete'])->name('delete-jasa');
     Route::post('/tambah-jasa', [AdminJasaController::class, 'store']);
     Route::post('/jasa/store', [AdminJasaController::class, 'store'])->name('jasa.store');
     Route::get('/cetak-jasa', [AdminjasaController::class, 'cetakJasa'])->name('cetak-jasa');
+    Route::get('/cetak-pemesanan', [AdminjasaController::class, 'cetakPemesanan'])->name('cetak-pemesanan');
     Route::get('/admin.daftar-jasa', [AdminJasaController::class, 'index'])->name('daftar.jasa');
     Route::get('/admin.daftar-pemesanan', [AdminJasaController::class, 'viewPesan'])->name('daftar-pemesanan');
 });
