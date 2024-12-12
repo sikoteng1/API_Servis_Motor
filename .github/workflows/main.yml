@@ -20,5 +20,5 @@ jobs:
           password: 123456789
           exclude: |
             **/.git*
-            **/.git/**
+            **/.git*/**
             **/node_modules/**
