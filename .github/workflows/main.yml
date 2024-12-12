@@ -20,5 +20,7 @@ jobs:
           password: 123456789
           exclude: |
             **/.git*
-            **/.git/**
+            **/.git*/**
             **/node_modules/**
+          parallel: 5
+          retry: 3
