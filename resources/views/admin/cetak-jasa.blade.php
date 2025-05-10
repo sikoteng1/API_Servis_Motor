@@ -47,19 +47,17 @@
             <thead>
                 <tr>
                     <th>Nama Jasa</th>
-                    <th>Foto Jasa</th>
+                    {{-- <th>Foto Jasa</th> --}}
                     <th>Deskripsi Jasa</th>
                 </tr>
             </thead>
 
             <tbody align="center">
-                @foreach($jasa as $jasa)
+                @foreach($jasas as $jasas)
                 <tr>
-                    <td>{{$jasa->nama_jasa}}</td>
-
-                    <td><img src="{{ asset('storage/storage/fotojasa/'.$jasa->foto_jasa)}}" width="100"></td>
-
-                    <td>{{$jasa->deskripsi_jasa}}</td>
+                    <td>{{$jasas->nama_jasa}}</td>
+                    {{-- <td><img src="{{ asset('storage/storage/fotojasa/'.$jasas->foto_jasa)}}" width="100"></td> --}}
+                    <td>{{$jasas->deskripsi_jasa}}</td>
 
                 </tr>
                 @endforeach

@@ -13,22 +13,15 @@ return new class extends Migration
     {
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_jasa');
-            $table->foreignId('id_user')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->date('tanggal_pemesanan');
+            $table->foreignId('jasa_id')->constrained('jasas')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            // $table->date('tanggal_pemesanan');
             $table->string('nama_pemesan');
-            $table->integer('telefon_pemesan');
+            $table->string('telefon_pemesan');
             $table->string('alamat_pemesan');
-            $table->integer('biaya_jasa');
-            $table->integer('biaya_tambahan');
-            $table->integer('total_biaya');
-            $table->string('keterangan');
-            $table->date('tanggal_datang');
-            $table->string('status_pemesanan');
-            $table->foreignId('id_oli')->constrained('olis')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('id_servis')->constrained('servis')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('id_cek')->constrained('ceks')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('id_sparepart')->constrained('spareparts')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('catatan_konsumen');
+            $table->date('tanggal_kedatangan');
+            // $table->string('status_pemesanan');
             $table->timestamps();
         });
     }

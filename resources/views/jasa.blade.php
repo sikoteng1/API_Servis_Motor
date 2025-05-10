@@ -64,12 +64,12 @@
 
       <div class="container">
         <div class="row justify-content-center h-15 p-5">
-            @foreach($jasa as $jasa)
+            @foreach($jasas as $jasas)
             <div class="card shadow bg-primary text-white mx-3 mt-5 col-md-3 col-12 mb-4 " style="border-radius: 20px; border: none; box-shadow: 2px 4px 6px rgba(0,0,0,0.15);">
-                <img class="card-img-top bg-primary m-auto pt-3" style="border-width: 20px; border-radius: 20px 20px 0px 0px;" src="{{ asset('storage/storage/fotojasa/'.$jasa->foto_jasa)}}" alt="{{$jasa->foto_jasa}}">
+                <img class="card-img-top bg-primary m-auto pt-3" style="border-width: 20px; border-radius: 20px 20px 0px 0px; width=100" src="{{ asset('storage/storage/fotojasa/'.$jasas->foto_jasa)}}" alt="{{$jasas->foto_jasa}}">
                 <div class="card-body">
-                    <h5 class="card-title text-white fw-bold text-center">{{$jasa->nama_jasa}}</h5>
-                    <p class="card-text text-white text-center">{{$jasa->deskripsi_jasa}}</p>
+                    <h5 class="card-title text-white fw-bold text-center">{{$jasas->nama_jasa}}</h5>
+                    <p class="card-text text-white text-center">{{$jasas->deskripsi_jasa}}</p>
                     <br>
                     @if(auth()->check())
                     <a class="btn fw-bold btn-light d-block mx-auto" style="border-radius: 100px;" href="{{ route('checkout')}}">Pesan Sekarang</a>

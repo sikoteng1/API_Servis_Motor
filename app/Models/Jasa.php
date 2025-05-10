@@ -9,10 +9,10 @@ class Jasa extends Model
 {
     use HasFactory;
     protected $table = 'jasas';
-    protected $fillable = ['nama_jasa', 'foto_jasa', 'deskripsi_jasa'];
+    protected $fillable = ['nama_jasa','deskripsi_jasa'];
 
     public function checkout()
     {
-        return $this->belongsTo(Checkout::class);
+        return $this->belongsTo(Pemesanan::class);
     }
 }

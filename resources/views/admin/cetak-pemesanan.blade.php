@@ -58,12 +58,12 @@
             </thead>
 
             <tbody>
-                @foreach($checkout as $checkout)
+                @foreach($pemesanan as $checkout)
                 <tr>
                     <td>{{$checkout->user->name}}</td>
                     <td>{{$checkout->nama_pemesan}}</td>
-                    <td>{{$checkout->nomor_telepon}}</td>
-                    <td>{{$checkout->alamat}}</td>
+                    <td>{{$checkout->telefon_pemesan}}</td>
+                    <td>{{$checkout->alamat_pemesan}}</td>
                     <td>{{$checkout->catatan_konsumen}}</td>
                     <td>{{$checkout->created_at}}</td>
                     <td>{{$checkout->tanggal_kedatangan}}</td>

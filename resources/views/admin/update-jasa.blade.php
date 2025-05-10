@@ -9,7 +9,7 @@
             <div> {{session('success')}} </div>
         @endif
 
-    <form action="{{ route('update-jasa', ['id' => $jasa->id]) }}" method="POST">
+    <form action="{{ route('update-jasa', ['id' => $jasas->id]) }}" method="POST">
             @csrf
             @method('get')
 

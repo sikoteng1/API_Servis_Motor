@@ -27,11 +27,6 @@
                 <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" rows="10"></textarea>
             </div>
 
-            <div class="form-group">
-                <label>Foto Jasa</label>
-                <input type="file" class="form-control" id="foto" name="foto">
-            </div>
-
 
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>

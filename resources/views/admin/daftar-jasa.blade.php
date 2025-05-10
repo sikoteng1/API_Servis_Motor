@@ -14,31 +14,26 @@
         <thead>
             <tr>
                 <th>Nama Jasa</th>
-                <th>Foto Jasa</th>
+                {{-- <th>Foto Jasa</th> --}}
                 <th>Deskripsi Jasa</th>
                 <th>Aksi</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach($jasa as $jasa)
+            @foreach($jasas as $jasas)
             <tr>
-                <td>{{$jasa->nama_jasa}}</td>
-
-                <td><img src="{{ asset('storage/storage/fotojasa/'.$jasa->foto_jasa)}}" width="100"></td>
-
-                <td>{{$jasa->deskripsi_jasa}}</td>
-
+                <td>{{$jasas->nama_jasa}}</td>
+                {{-- <td><img src="{{ asset('storage/storage/fotojasa/'.$jasas->foto_jasa)}}" width="100"></td> --}}
+                <td>{{$jasas->deskripsi_jasa}}</td>
                 <td>
-
-
-                <form action="/jasa/delete/{{$jasa->id}}" method="post">
+                <form action="/jasa/delete/{{$jasas->id}}" method="post" onsubmit="return confirm('Yakin mau hapus data ini?');">
                     @csrf
-                    @method('delete')
+                    @method('DELETE')
                     <button type="submit class="btn btn-danger"><i class="fa-solid fa-trash m-2 "></i></button>
                 </form>
-
                 </td>
+
             </tr>
             @endforeach
         </tbody>

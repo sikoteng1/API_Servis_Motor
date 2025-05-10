@@ -2,91 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Checkout;
-use App\Models\harga;
 use App\Models\Jasa;
+use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class UserJasaController extends Controller
 {
     public function viewjasa()
     {
-        $jasa = Jasa::take(3)->get();
-        return view('jasa', compact('jasa'));
+        $jasas = Jasa::take(3)->get();
+        return view('jasa', compact('jasas'));
     }
 
     public function checkout()
     {
-        $jasa = Jasa::all();
-        return view('checkout', compact('jasa'));
+        $jasas = Jasa::all();
+        return view('checkout', compact('jasas'));
     }
 
     public function checkoutStore(Request $request)
     {
-        // dd($request->input("nomor_telepon"));
-        $request->validate([
+        // 1. Validasi data dan disimpan dalam variabel $validatedData
+        $validatedData = $request->validate([
             'nama_pemesan' => 'required|string|max:255',
-            'nomor_telepon' => 'required|string|max:255',
-            'alamat' => 'required|string',
-            'servis' => 'required|string|max:255',
+            'telefon_pemesan' => 'required|string|max:15',
+            'alamat_pemesan' => 'required|string',
+            'servis' => 'required|integer|exists:jasas,id',
             'tanggal_kedatangan' => 'required|date',
+            'catatan_konsumen' => 'nullable|string',
             'checkbox' => 'required',
         ]);
 
         try {
-            // code 1
-            // code
-            Checkout::create([
-                'nama_pemesan' => $request->input('nama_pemesan'),
-                'nomor_telepon' => $request->input('nomor_telepon'),
-                'alamat' => $request->input('alamat'),
-                'jasa_id' => $request->input('servis'),
-                'catatan_konsumen' => $request->input('catatan_konsumen'),
-                'tanggal_kedatangan' => $request->input('tanggal_kedatangan'),
-                'user_id' => auth()->id(), // Menyertakan user_id
-            ]);
 
-            return redirect('/')->with('success', 'Data berhasil disimpan!');
 
+            // 2. Siapkan data untuk disimpan, ambil dari validatedData
+            $storedData = $validatedData;
+
+            // Mapping 'servis' dari validasi ke 'jasa_id' di database
+            $storedData['jasa_id'] = $validatedData['servis'];
+
+            // 3. Tambahkan data yang tidak datang dari form langsung
+            $storedData['user_id'] = auth()->id(); // Ambil user_id dari user yang sedang login
+            // $dataUntukDisimpan['tanggal_pemesanan'] = now(); // Set tanggal pemesanan otomatis
+            // $dataUntukDisimpan['status_pemesanan'] = 'Menunggu Konfirmasi'; // Contoh set default status
+
+            // 4. Buat record baru di database menggunakan Model Pemesanan
+            Pemesanan::create($storedData);
+
+            // 5. Redirect ke halaman lain dengan pesan sukses
+            return redirect()->route('home')->with('success', 'Data berhasil disimpan!');
         } catch (\Exception $e) {
-            return dd("error :".$e->getMessage());
+            Log::error("Error saving pemesanan: " . $e->getMessage()); // Log errornya
+            return redirect()->back()->withInput()->with('error', 'Terjadi kesalahan saat menyimpan data pemesanan. Mohon coba lagi.');
         }
-
-        // dd($request);
-
-    //     $user = Auth::user();
-    //     $jasa = Jasa::findOrFail($request->jasa_id)->get();
-
-    //     $validator = Validator::make($request->all(), [
-    //         'nama_pemesan' => 'required|string|max:255',
-    //         'nomor_telepon' => 'required|integer|min:10|max:15',
-    //         'alamat' => 'required|string|max:255',
-    //         'servis' => 'required|string|max:255',
-    //         'catatan_konsumen' => 'required|string|max:255',
-    //         'tanggal_kedatangan' => 'required|date',
-    //         'checkbox' => 'required',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return view('checkout');
-    //     }
-
-    //     $checkout = [
-    //     'user_id' => $user->id ,
-    //     'nama_pemesan' => $request->nama_pemesan,
-    //     'nomor_telepon' => $request->nomor_telepon,
-    //     'alamat' => $request->alamat,
-    //     'jasa_id' => $jasa->id,
-    //     'catatan_konsumen' => $request->catatan_konsumen,
-    //     'tanggal_kedatangan' => $request->tanggal_kedatangan,
-    //     ];
-
-    //     Checkout::create($checkout);
-
-    //     return redirect()->route('checkout')->with('success', 'Checkout created successfully.');
     }
-
-
 }
